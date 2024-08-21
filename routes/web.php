@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SignupController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\AddCustomerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,3 +23,15 @@ Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login.for
 Route::post('/login', [LoginController::class, 'processLogin'])->name('login.process');
 
 Route::get('/dashboard', [LoginController::class, 'showDashboard'])->name('dashboard');
+
+
+// Dashboard route
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
+
+// Add Customer form route
+Route::get('/add-customer', [AddCustomerController::class, 'showForm'])->name('add.customer.form');
+
+// Handle form submission
+Route::post('/add-customer', [AddCustomerController::class, 'storeCustomer'])->name('add.customer');
