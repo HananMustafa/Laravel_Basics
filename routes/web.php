@@ -35,3 +35,6 @@ Route::get('/add-customer', [AddCustomerController::class, 'showForm'])->name('a
 
 // Handle form submission
 Route::post('/add-customer', [AddCustomerController::class, 'storeCustomer'])->name('add.customer');
+
+// Dashboard route that shows all customers
+Route::get('/dashboard', [AddCustomerController::class, 'showDashboard'])->name('dashboard');

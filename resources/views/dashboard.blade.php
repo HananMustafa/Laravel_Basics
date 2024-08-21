@@ -3,6 +3,22 @@
 <html>
 <head>
     <title>Dashboard</title>
+    <style>
+        .card {
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 16px;
+            margin: 8px 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .card h3 {
+            margin: 0;
+            font-size: 24px;
+        }
+        .card p {
+            margin: 4px 0;
+        }
+    </style>
 </head>
 <body>
     <h2>Welcome to the Dashboard!</h2>
@@ -12,5 +28,18 @@
     <a href="{{ route('add.customer.form') }}">
         <button type="button">Add Customer</button>
     </a>
+
+    <!-- Display customers as cards -->
+    @if($customers->isEmpty())
+        <p>No customers found.</p>
+    @else
+        @foreach($customers as $customer)
+            <div class="card">
+                <h3>{{ $customer->Name }}</h3>
+                <p><strong>Address:</strong> {{ $customer->Address }}</p>
+                <p><strong>Age:</strong> {{ $customer->Age }}</p>
+            </div>
+        @endforeach
+    @endif
 </body>
 </html>

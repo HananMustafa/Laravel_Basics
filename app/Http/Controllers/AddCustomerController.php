@@ -32,6 +32,18 @@ class AddCustomerController extends Controller
         // Redirect back to the dashboard
         return redirect()->route('dashboard')->with('success', 'Customer added successfully!');
     }
+
+
+
+    //DISPLAY CUSTOMERS
+    public function showDashboard()
+    {
+        // Fetch all customers from the database
+        $customers = Customer::all();
+
+        // Pass the customers to the dashboard view
+        return view('dashboard', compact('customers'));
+    }
 }
 
 ?>
