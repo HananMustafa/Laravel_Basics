@@ -10,6 +10,7 @@
             padding: 16px;
             margin: 8px 0;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: relative;
         }
         .card h3 {
             margin: 0;
@@ -17,6 +18,13 @@
         }
         .card p {
             margin: 4px 0;
+        }
+        .delete-icon {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            cursor: pointer;
+            color: red;
         }
     </style>
 </head>
@@ -38,6 +46,13 @@
                 <h3>{{ $customer->Name }}</h3>
                 <p><strong>Address:</strong> {{ $customer->Address }}</p>
                 <p><strong>Age:</strong> {{ $customer->Age }}</p>
+                
+                <!-- Delete Icon -->
+                <form action="{{ route('delete.customer', $customer->id) }}" method="POST" style="display:inline;">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="delete-icon" onclick="return confirm('Are you sure you want to delete this customer?');">🗑️</button>
+                </form>
             </div>
         @endforeach
     @endif

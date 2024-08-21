@@ -38,3 +38,6 @@ Route::post('/add-customer', [AddCustomerController::class, 'storeCustomer'])->n
 
 // Dashboard route that shows all customers
 Route::get('/dashboard', [AddCustomerController::class, 'showDashboard'])->name('dashboard');
+
+// Delete customer route
+Route::delete('/customer/{id}', [AddCustomerController::class, 'destroy'])->name('delete.customer');
