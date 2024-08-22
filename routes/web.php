@@ -4,6 +4,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SignupController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AddCustomerController;
+use App\Http\Controllers\UpdateCustomerController;
+
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -41,3 +45,10 @@ Route::get('/dashboard', [AddCustomerController::class, 'showDashboard'])->name(
 
 // Delete customer route
 Route::delete('/customer/{id}', [AddCustomerController::class, 'destroy'])->name('delete.customer');
+
+
+// Route to show the update form
+Route::get('/customer/{id}/edit', [UpdateCustomerController::class, 'edit'])->name('edit.customer');
+
+// Route to handle the update operation
+Route::put('/customer/{id}', [UpdateCustomerController::class, 'update'])->name('update.customer');

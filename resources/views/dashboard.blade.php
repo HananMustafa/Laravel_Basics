@@ -19,12 +19,18 @@
         .card p {
             margin: 4px 0;
         }
-        .delete-icon {
+        .delete-icon, .edit-icon {
             position: absolute;
             top: 16px;
-            right: 16px;
             cursor: pointer;
             color: red;
+        }
+        .delete-icon {
+            right: 16px;
+        }
+        .edit-icon {
+            right: 40px;
+            color: blue;
         }
     </style>
 </head>
@@ -46,7 +52,10 @@
                 <h3>{{ $customer->Name }}</h3>
                 <p><strong>Address:</strong> {{ $customer->Address }}</p>
                 <p><strong>Age:</strong> {{ $customer->Age }}</p>
-                
+
+                <!-- Edit Icon -->
+                <a href="{{ route('edit.customer', $customer->id) }}" class="edit-icon">✏️</a>
+
                 <!-- Delete Icon -->
                 <form action="{{ route('delete.customer', $customer->id) }}" method="POST" style="display:inline;">
                     @csrf
