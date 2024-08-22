@@ -1,45 +1,35 @@
+<!-- resources/views/welcome.blade.php -->
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Signup Form</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    <style>
+        .container {
+            text-align: center;
+            margin-top: 100px;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px;
+            background-color: #007BFF;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
-    <h2>Signup Form</h2>
-
-    @if (session('success'))
-        <div>{{ session('success') }}</div>
-    @endif
-
-    <form action="{{ route('signup.process') }}" method="POST">
-        @csrf
-        <div>
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" value="{{ old('name') }}">
-            @error('name')
-                <div>{{ $message }}</div>
-            @enderror
-        </div>
-        <div>
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" value="{{ old('email') }}">
-            @error('email')
-                <div>{{ $message }}</div>
-            @enderror
-        </div>
-        <div>
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password">
-            @error('password')
-                <div>{{ $message }}</div>
-            @enderror
-        </div>
-        <div>
-            <label for="password_confirmation">Confirm Password:</label>
-            <input type="password" id="password_confirmation" name="password_confirmation">
-        </div>
-        <div>
-            <button type="submit">Signup</button>
-        </div>
-    </form>
+    <div class="container">
+        <h1>Welcome to Our Application</h1>
+        <a href="{{ route('signup.form') }}" class="button">Signup</a>
+        <a href="{{ route('login.form') }}" class="button">Login</a>
+    </div>
 </body>
 </html>

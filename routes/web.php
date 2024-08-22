@@ -6,9 +6,6 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AddCustomerController;
 use App\Http\Controllers\UpdateCustomerController;
 
-
-
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,35 +17,32 @@ use App\Http\Controllers\UpdateCustomerController;
 |
 */
 
-Route::get('/', [SignupController::class, 'showSignupForm'])->name('signup.form');
+// Welcome route
+Route::get('/', function () {
+    return view('welcome');
+})->name('welcome');
+
+// Signup routes
+Route::get('/signup', [SignupController::class, 'showSignupForm'])->name('signup.form');
 Route::post('/signup', [SignupController::class, 'processSignup'])->name('signup.process');
 
+// Login routes
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login.form');
 Route::post('/login', [LoginController::class, 'processLogin'])->name('login.process');
 
+// Dashboard routes
 Route::get('/dashboard', [LoginController::class, 'showDashboard'])->name('dashboard');
-
-
-// Dashboard route
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
 
 // Add Customer form route
 Route::get('/add-customer', [AddCustomerController::class, 'showForm'])->name('add.customer.form');
-
-// Handle form submission
 Route::post('/add-customer', [AddCustomerController::class, 'storeCustomer'])->name('add.customer');
 
-// Dashboard route that shows all customers
+// Display customers on dashboard
 Route::get('/dashboard', [AddCustomerController::class, 'showDashboard'])->name('dashboard');
 
 // Delete customer route
 Route::delete('/customer/{id}', [AddCustomerController::class, 'destroy'])->name('delete.customer');
 
-
-// Route to show the update form
+// Edit Customer routes
 Route::get('/customer/{id}/edit', [UpdateCustomerController::class, 'edit'])->name('edit.customer');
-
-// Route to handle the update operation
 Route::put('/customer/{id}', [UpdateCustomerController::class, 'update'])->name('update.customer');

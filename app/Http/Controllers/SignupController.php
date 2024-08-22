@@ -9,7 +9,7 @@ class SignupController extends Controller
 {
     public function showSignupForm()
     {
-        return view('welcome');
+        return view('Signup');
     }
 
     public function processSignup(Request $request)
