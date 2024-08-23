@@ -9,7 +9,6 @@
 <body>
     <div class="formbg">
         <h2>Welcome to the Dashboard!</h2>
-        <p>You are logged in successfully.</p>
         
         <!-- Add Customer Button -->
         <a href="{{ route('add.customer.form') }}">
