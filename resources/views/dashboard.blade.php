@@ -1,69 +1,43 @@
-<!-- resources/views/dashboard.blade.php -->
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-    <style>
-        .card {
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            padding: 16px;
-            margin: 8px 0;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            position: relative;
-        }
-        .card h3 {
-            margin: 0;
-            font-size: 24px;
-        }
-        .card p {
-            margin: 4px 0;
-        }
-        .delete-icon, .edit-icon {
-            position: absolute;
-            top: 16px;
-            cursor: pointer;
-            color: red;
-        }
-        .delete-icon {
-            right: 16px;
-        }
-        .edit-icon {
-            right: 40px;
-            color: blue;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h2>Welcome to the Dashboard!</h2>
-    <p>You are logged in successfully.</p>
-    
-    <!-- Add Customer Button -->
-    <a href="{{ route('add.customer.form') }}">
-        <button type="button">Add Customer</button>
-    </a>
+    <div class="formbg">
+        <h2>Welcome to the Dashboard!</h2>
+        <p>You are logged in successfully.</p>
+        
+        <!-- Add Customer Button -->
+        <a href="{{ route('add.customer.form') }}">
+            <button type="button" class="btn-submit">Add Customer</button>
+        </a>
 
-    <!-- Display customers as cards -->
-    @if($customers->isEmpty())
-        <p>No customers found.</p>
-    @else
-        @foreach($customers as $customer)
-            <div class="card">
-                <h3>{{ $customer->Name }}</h3>
-                <p><strong>Address:</strong> {{ $customer->Address }}</p>
-                <p><strong>Age:</strong> {{ $customer->Age }}</p>
+        <!-- Display customers as cards -->
+        @if($customers->isEmpty())
+            <p>No customers found.</p>
+        @else
+            @foreach($customers as $customer)
+                <div class="card">
+                    <h3>{{ $customer->Name }}</h3>
+                    <p><strong>Address:</strong> {{ $customer->Address }}</p>
+                    <p><strong>Age:</strong> {{ $customer->Age }}</p>
 
-                <!-- Edit Icon -->
-                <a href="{{ route('edit.customer', $customer->id) }}" class="edit-icon">✏️</a>
+                    <!-- Edit Icon -->
+                    <a href="{{ route('edit.customer', $customer->id) }}" class="edit-icon">✏️</a>
 
-                <!-- Delete Icon -->
-                <form action="{{ route('delete.customer', $customer->id) }}" method="POST" style="display:inline;">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="delete-icon" onclick="return confirm('Are you sure you want to delete this customer?');">🗑️</button>
-                </form>
-            </div>
-        @endforeach
-    @endif
+                    <!-- Delete Icon -->
+                    <form action="{{ route('delete.customer', $customer->id) }}" method="POST" style="display:inline;">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="delete-icon" onclick="return confirm('Are you sure you want to delete this customer?');">🗑️</button>
+                    </form>
+                </div>
+            @endforeach
+        @endif
+    </div>
 </body>
 </html>
