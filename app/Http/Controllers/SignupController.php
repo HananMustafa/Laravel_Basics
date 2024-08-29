@@ -21,12 +21,19 @@ class SignupController extends Controller
             'password' => 'required|string|min:8|confirmed',
         ]);
 
+        dd($request->all());
         // Create a new user
-        $user = new User();
-        $user->name = $validatedData['name'];
-        $user->email = $validatedData['email'];
-        $user->password = Hash::make($validatedData['password']);
-        $user->save();
+        User::create([
+            'name' => $validatedData['name'],
+            'email' => $validatedData['email'],
+            'password' =>Hash::make($validatedData['password'])
+        ]);
+
+        // $user = new User();
+        // $user->name = $validatedData['name'];
+        // $user->email = $validatedData['email'];
+        // $user->password = Hash::make($validatedData['password']);
+        // $user->save();
 
         return redirect()->route('login.form')->with('success', 'User registered successfully! Please login.');
     }
