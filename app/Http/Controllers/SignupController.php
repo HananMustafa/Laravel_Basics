@@ -14,7 +14,7 @@ class SignupController extends Controller
 
     public function processSignup(Request $request)
     {
-        // Validate the incoming request data
+        //Validate the incoming request data
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
@@ -22,7 +22,7 @@ class SignupController extends Controller
         ]);
 
         dd($request->all());
-        // Create a new user
+        //Create a new user
         User::create([
             'name' => $validatedData['name'],
             'email' => $validatedData['email'],

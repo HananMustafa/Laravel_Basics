@@ -7,7 +7,7 @@ use App\Models\Customer;
 
 class UpdateCustomerController extends Controller
 {
-    // Show the form for editing the specified customer
+    //Show the form for editing the specified customer
     public function edit($id)
     {
         $customer = Customer::find($id);
@@ -19,7 +19,7 @@ class UpdateCustomerController extends Controller
         return redirect()->route('dashboard')->with('error', 'Customer not found.');
     }
 
-    // Update the specified customer in the database
+    //Update the specified customer in the database
     public function update(Request $request, $id)
     {
         $validatedData = $request->validate([
