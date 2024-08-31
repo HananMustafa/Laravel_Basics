@@ -11,19 +11,26 @@ class UpdateCustomerController extends Controller
     //Show the form for editing the specified customer
     public function edit($id)
     {
-        if(Auth::check()){
 
-            $customer = Customer::find($id);
+        // if(Auth::check()){
+        //     $customer = Customer::find($id);
+        
+        //     if ($customer) {
+        //     return view('updateCustomer', compact('customer'));
+        //     }
+        //     return redirect()->route('dashboard')->with('error', 'Customer not found.');
+        // }else{
+        //     return redirect()->route('login.form');
+        // }
+
+        
+        $customer = Customer::find($id);
         
         if ($customer) {
             return view('updateCustomer', compact('customer'));
         }
 
         return redirect()->route('dashboard')->with('error', 'Customer not found.');
-        
-    }else{
-        return redirect()->route('login.form');
-    }
         
     }
 

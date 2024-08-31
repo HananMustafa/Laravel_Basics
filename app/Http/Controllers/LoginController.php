@@ -34,15 +34,17 @@ class LoginController extends Controller
 
     public function showDashboard()
     {
-        if(Auth::check()){
-
-            $customers = Customer::all();
-            return view('dashboard', compact('customers'));
-        }
-        else{
-            return redirect()->route('login.form');
-        }
         
+        // if(Auth::check()){
+        //     $customers = Customer::all();
+        //     return view('dashboard', compact('customers'));
+        // }
+        // else{
+        //     return redirect()->route('login.form');
+        // }
+        
+        $customers = Customer::all();
+        return view('dashboard', compact('customers'));
     }
 
 

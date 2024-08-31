@@ -11,12 +11,14 @@ class AddCustomerController extends Controller
     public function showForm()
     {
 
-        if(Auth::check()){
-            return view('addCustomer');
-        }
-        else{
-            return redirect()->route('login.form');
-        }
+        // if(Auth::check()){
+        //     return view('addCustomer');
+        // }
+        // else{
+        //     return redirect()->route('login.form');
+        // }
+
+        return view('addCustomer');
         
     }
 

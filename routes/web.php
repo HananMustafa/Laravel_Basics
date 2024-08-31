@@ -5,6 +5,7 @@ use App\Http\Controllers\SignupController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AddCustomerController;
 use App\Http\Controllers\UpdateCustomerController;
+use App\Http\Middleware\ValidUser;
 
 
 //Welcome route
@@ -24,17 +25,17 @@ Route::post('/login', [LoginController::class, 'processLogin'])->name('login.pro
 // Route::get('/dashboard', [LoginController::class, 'showDashboard'])->name('dashboard');
 
 //Add Customer form route
-Route::get('/add-customer', [AddCustomerController::class, 'showForm'])->name('add.customer.form');
+Route::get('/add-customer', [AddCustomerController::class, 'showForm'])->name('add.customer.form')->middleware(ValidUser::class);
 Route::post('/add-customer', [AddCustomerController::class, 'storeCustomer'])->name('add.customer');
 
 //DASHBOARD
-Route::get('/dashboard', [LoginController::class, 'showDashboard'])->name('dashboard');
+Route::get('/dashboard', [LoginController::class, 'showDashboard'])->name('dashboard')->middleware(ValidUser::class);
 
 //Delete customer route
 Route::delete('/customer/{id}', [AddCustomerController::class, 'destroy'])->name('delete.customer');
 
 //Edit Customer routes
-Route::get('/customer/{id}/edit', [UpdateCustomerController::class, 'edit'])->name('edit.customer');
+Route::get('/customer/{id}/edit', [UpdateCustomerController::class, 'edit'])->name('edit.customer')->middleware(ValidUser::class);
 Route::put('/customer/{id}', [UpdateCustomerController::class, 'update'])->name('update.customer');
 
 
