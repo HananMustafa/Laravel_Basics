@@ -48,4 +48,14 @@ Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 //     Route::get('/add-customer', [AddCustomerController::class, 'showForm'])->name('add.customer.form');
 //     Route::get('/dashboard', [LoginController::class, 'showDashboard'])->name('dashboard');
 //     Route::get('/customer/{id}/edit', [UpdateCustomerController::class, 'edit'])->name('edit.customer');
+
+//     Route::get('/signup', [SignupController::class, 'showSignupForm'])->name('signup.form')->withoutMiddleware(ValidUser::class);
+// });
+
+
+
+
+// Route::withoutMiddleware(ValidUser::class)->group(function(){
+
+//     Route::get('/signup', [SignupController::class, 'showSignupForm']);
 // });
