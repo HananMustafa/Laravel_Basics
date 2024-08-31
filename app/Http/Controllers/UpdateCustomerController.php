@@ -4,19 +4,27 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Customer;
+use Illuminate\Support\Facades\Auth;
 
 class UpdateCustomerController extends Controller
 {
     //Show the form for editing the specified customer
     public function edit($id)
     {
-        $customer = Customer::find($id);
+        if(Auth::check()){
 
+            $customer = Customer::find($id);
+        
         if ($customer) {
             return view('updateCustomer', compact('customer'));
         }
 
         return redirect()->route('dashboard')->with('error', 'Customer not found.');
+        
+    }else{
+        return redirect()->route('login.form');
+    }
+        
     }
 
     //Update the specified customer in the database

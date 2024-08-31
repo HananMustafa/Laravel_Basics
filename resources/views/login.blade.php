@@ -10,9 +10,6 @@
     <div class="formbg">
         <h2>Login</h2>
 
-        <h5>User Details: </h5>
-        <h5> {{ Auth::user() }}</h5>
-
         @if (session('error'))
             <div class="error">{{ session('error') }}</div>
         @endif
