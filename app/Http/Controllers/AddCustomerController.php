@@ -1,5 +1,4 @@
 <?php
-// app/Http/Controllers/AddCustomerController.php
 
 namespace App\Http\Controllers;
 
@@ -30,11 +29,7 @@ class AddCustomerController extends Controller
         return redirect()->route('dashboard')->with('success', 'Customer added successfully!');
     }
 
-    public function showDashboard()
-    {
-        $customers = Customer::all();
-        return view('dashboard', compact('customers'));
-    }
+
 
     public function destroy($id)
     {

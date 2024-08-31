@@ -8,7 +8,10 @@
 </head>
 <body>
     <div class="formbg">
+        <h5> {{ Auth::user() }} </h5>
         <h2>Welcome to the Dashboard!</h2>
+
+        
         
         <!-- Add Customer Button -->
         <a href="{{ route('add.customer.form') }}">
@@ -37,6 +40,12 @@
                 </div>
             @endforeach
         @endif
+
+
+                <!-- Logout Button -->
+                <a href="{{ route('logout') }}">
+                    <button type="button" class="btn-submit">Logout</button>
+                </a>
     </div>
 </body>
 </html>

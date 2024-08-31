@@ -20,15 +20,15 @@ Route::post('/signup', [SignupController::class, 'processSignup'])->name('signup
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login.form');
 Route::post('/login', [LoginController::class, 'processLogin'])->name('login.process');
 
-//Dashboard routes
-Route::get('/dashboard', [LoginController::class, 'showDashboard'])->name('dashboard');
+// //Dashboard routes
+// Route::get('/dashboard', [LoginController::class, 'showDashboard'])->name('dashboard');
 
 //Add Customer form route
 Route::get('/add-customer', [AddCustomerController::class, 'showForm'])->name('add.customer.form');
 Route::post('/add-customer', [AddCustomerController::class, 'storeCustomer'])->name('add.customer');
 
-//Display customers on dashboard
-Route::get('/dashboard', [AddCustomerController::class, 'showDashboard'])->name('dashboard');
+//DASHBOARD
+Route::get('/dashboard', [LoginController::class, 'showDashboard'])->name('dashboard');
 
 //Delete customer route
 Route::delete('/customer/{id}', [AddCustomerController::class, 'destroy'])->name('delete.customer');
@@ -36,3 +36,7 @@ Route::delete('/customer/{id}', [AddCustomerController::class, 'destroy'])->name
 //Edit Customer routes
 Route::get('/customer/{id}/edit', [UpdateCustomerController::class, 'edit'])->name('edit.customer');
 Route::put('/customer/{id}', [UpdateCustomerController::class, 'update'])->name('update.customer');
+
+
+//Logout 
+Route::get('logout', [LoginController::class, 'logout'])->name('logout');

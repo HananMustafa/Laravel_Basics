@@ -5,13 +5,15 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+use App\Models\Customer; //to fetch customers
+
 class LoginController extends Controller
 {
     public function showLoginForm()
     {
         return view('login');
     }
-
+ 
     public function processLogin(Request $request)
     {
         //Validate the login data
@@ -32,6 +34,23 @@ class LoginController extends Controller
 
     public function showDashboard()
     {
-        return view('dashboard');
+        if(Auth::check()){
+
+            $customers = Customer::all();
+            return view('dashboard', compact('customers'));
+        }
+        else{
+            return redirect()->route('login.form');
+        }
+        
     }
+
+
+    public function logout()
+    {
+            Auth::logout();
+            return view('login');
+        
+    }
+
 }
