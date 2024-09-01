@@ -24,11 +24,26 @@ class LoginController extends Controller
 
         //Attempt to log the user in
         if (Auth::attempt($credentials)) {
-            //Authentication passed, redirect to the dashboard
+
+            //TOKEN BASED AUTHENTICATION
+            $user = Auth::user();
+            $token = $user->createToken('authToken')->plainTextToken;
+    
+            //PRINT TOKEN INFO ON THE SCREEN
+            // return response()->json([
+            //     'message' => 'Login successful',
+            //     'token' => $token,
+            //     'redirect' => route('dashboard'),
+            // ]);
+
+
+
+
+            //AUTH BASED AUTHENTICATION
             return redirect()->route('dashboard');
         }
 
-        //Authentication failed, redirect back with error message
+        //AUTH BASED AUTHENTICATION
         return redirect()->route('login.form')->with('error', 'Invalid credentials. Please try again.');
     }
 
@@ -50,7 +65,12 @@ class LoginController extends Controller
 
     public function logout()
     {
+            //TOKEN BASED AUTHENTICATION
+            Auth::user()->tokens()->delete();
+
+            //AUTH BASED AUTHENTICATION
             Auth::logout();
+
             return view('login');
         
     }
